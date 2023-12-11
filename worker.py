@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request
 import requests
 import os
 import json
@@ -9,6 +8,9 @@ def get_api_key() -> str:
     secret = os.environ.get("COMPUTE_API_KEY")
     if secret:
         return secret
+    else:
+        with open('.key') as f:
+            return f.read()
       
 @app.route("/")
 def hello():
@@ -24,7 +26,8 @@ def add():
   if request.method=='GET':
     return "Use post to add" # replace with form template
   else:
-    data = request.getjson()
+    data = request.get_json()
+    print(data)
     num = data.get('num')
     token=get_api_key()
     ret = addWorker(token,num)
