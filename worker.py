@@ -28,6 +28,8 @@ def add():
   if request.method=='GET':
     return "Use post to add" # replace with form template
   else:
+    data = request.get_json()
+    num = data.get('num')
     token=get_api_key()
     ret = addWorker(token,request.form['num'])
     return ret
