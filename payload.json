@@ -9,7 +9,7 @@
     {
       "autoDelete": true,
       "boot": true,
-      "deviceName": "lab6-slave2",
+      "deviceName": "lab6-slave",
       "initializeParams": {
         "diskSizeGb": "10",
         "diskType": "projects/linear-bounty-405515/zones/europe-west1-b/diskTypes/pd-standard",
