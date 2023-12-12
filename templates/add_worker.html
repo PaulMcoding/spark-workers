@@ -72,6 +72,8 @@
             <br>
             <button type="button" onclick="addWorker()">Add Worker</button>
         </form>
+        <h3 id="succ" style="color: green; display: none;">Added Spark SLAVE successfully</h3>
+        <h3 id="nucc" style="color: red; display: none;">Theres been a problem</h3>
     </div>
 
     <script>
@@ -89,9 +91,13 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
+                var succ = document.getElementById("succ");
+                succ.style.display = "block";
             })
             .catch((error) => {
                 console.error('Error:', error);
+                var nucc = document.getElementById("nucc");
+                nucc.style.display = "block";
             });
         }
     </script>
