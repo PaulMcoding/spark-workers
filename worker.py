@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, redirect, render_template
 import requests
 import os
 import json
@@ -24,14 +24,14 @@ def test():
 @app.route("/add",methods=['GET','POST'])
 def add():
   if request.method=='GET':
-    return "Use post to add" # replace with form template
+    return render_template("add_worker.html")
   else:
     data = request.get_json()
     print(data)
     num = data.get('num')
     token=get_api_key()
     ret = addWorker(token,num)
-    return ret
+    return jsonify(result=ret)
 
 
 def addWorker(token, num):

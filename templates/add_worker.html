@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Worker Form</title>
+    <style>
+        body {
+            background-image: url('https://www.cars.com/i/large/in/v2/stock_photos/32343925-34df-4782-a68f-4f88c9934603/f8b02257-7a6d-441e-8491-7e332cccf818.png');
+            animation: scrollBackground 40s linear infinite;
+            margin: 0;
+            font-family: 'Arial', sans-serif; /* Add a preferred font family */
+        }
+        
+        @keyframes scrollBackground {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100% 0;
+            }
+        }
+
+        #customDiv {
+            margin: 270px 0 0 38%;
+            background-color: rgba(159, 168, 167);
+            width: 350px;
+            height: 250px;
+            padding: 20px; /* Add padding for content inside the div */
+            border-radius: 25px;/* Add rounded corners */
+            border: 3px solid black;
+            box-shadow: 0 50px 220px rgba(209, 173, 87, 1); /* Add a subtle box shadow */
+            text-align: center; /* Center text inside the div */
+            color: white; /* Text color */
+        }
+
+        #addWorkerForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="customDiv">
+        <h1>Add Worker</h1>
+        <form id="addWorkerForm">
+            <label for="num">Worker Number:</label>
+            <input type="number" name="num" id="num" required>
+            <br>
+            <button type="button" onclick="addWorker()">Add Worker</button>
+        </form>
+    </div>
+
+    <script>
+        function addWorker() {
+            var numValue = document.getElementById("num").value;
+            var data = { "num": numValue };
+
+            fetch('/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+</body>
+</html>
